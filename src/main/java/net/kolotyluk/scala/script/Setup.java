@@ -1,4 +1,4 @@
-/*  Copyright © 2014 by Eric Kolotyluk <eric@kolotyluk.net>
+/*  Copyright ï¿½ 2014 by Eric Kolotyluk <eric@kolotyluk.net>
 
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
@@ -108,16 +108,23 @@ public class Setup {
 			processArguments.add("cmd");
 			processArguments.add("/c");
 			processArguments.add("scala");
-			processArguments.add("-e");
-			processArguments.add("\"println(scala.util.Properties.versionString)\"");
 			break;
+
 		case UNIX:
-			System.out.println("Error " + operatingSystem);
+			processArguments.add("bash");
+			processArguments.add("scala");
 			break;
+
 		default:
-			System.out.println("Error" + operatingSystem);
+			processArguments.add("sh");
+			processArguments.add("-c");
+			processArguments.add("/usr/bin/scala");
 			break;
 		}
+		
+		processArguments.add("-e");
+		processArguments.add("println(scala.util.Properties.versionString)");
+
 		
 		System.out.print("Process arguments: ");
 		for (String processArgument : processArguments) System.out.print(" " + processArgument);
