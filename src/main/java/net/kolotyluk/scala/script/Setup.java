@@ -109,7 +109,7 @@ public class Setup {
 			processArguments.add("/c");
 			processArguments.add("scala");
 			processArguments.add("-e");
-			processArguments.add("\"println(scala.util.Properties.versionString)\"");
+			processArguments.add("println(scala.util.Properties.versionString)");
 			break;
 		case UNIX:
 			System.out.println("Error " + operatingSystem);
@@ -143,6 +143,8 @@ public class Setup {
 				int exitValue = process.waitFor();	// BLOCKING Operation
 
 				System.out.println("exitValue = " + exitValue);
+				
+				return exitValue == 0;
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
